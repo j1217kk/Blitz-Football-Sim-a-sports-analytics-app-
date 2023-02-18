@@ -1,0 +1,103 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+export interface PlayerState {
+    first_name: string,
+    last_name: string,
+    age: number,
+    number: number,
+    position: string,
+    height: string,
+    weight: number,
+    accel: number,
+    agility: number,
+    speed: number,
+    strength: number,
+    catching: number,
+    throwing: number,
+    tackling: number,
+    pass_rush: number,
+    man_coverage: number,
+    zone_coverage: number,
+    blocking: number,
+    kick_power: number,
+    kick_acc: number,
+    durability: number
+}
+
+const initialState: PlayerState = {
+    first_name: '',
+    last_name: '',
+    age: 0,
+    number: 0,
+    position: '',
+    height: '',
+    weight: 0,
+    accel: 0,
+    agility: 0,
+    speed: 0,
+    strength: 0,
+    catching: 0,
+    throwing: 0,
+    tackling: 0,
+    pass_rush: 0,
+    man_coverage: 0,
+    zone_coverage: 0,
+    blocking: 0,
+    kick_power: 0,
+    kick_acc: 0,
+    durability:0,
+}
+
+const rootSlice = createSlice({
+    name: "root",
+    initialState,
+    reducers: {
+        chooseFirstName: (state, action) => { state.first_name = action.payload },
+        chooseLastName: (state, action) => { state.last_name = action.payload },
+        chooseAge: (state, action) => { state.age = action.payload },
+        chooseNumber: (state, action) => { state.number = action.payload },
+        choosePosition: (state, action) => { state.position = action.payload },
+        chooseHeight: (state, action) => { state.height = action.payload },
+        chooseWeight: (state, action) => { state.weight = action.payload },
+        chooseAccel: (state, action) => { state.accel = action.payload },
+        chooseAgility: (state, action) => { state.agility = action.payload },
+        chooseSpeed: (state, action) => { state.speed = action.payload },
+        chooseStrength: (state, action) => { state.strength = action.payload },
+        chooseCatching: (state, action) => { state.catching = action.payload },
+        chooseThrowing: (state, action) => { state.throwing = action.payload },
+        chooseTackling: (state, action) => { state.tackling = action.payload },
+        choosePassRush: (state, action) => { state.pass_rush = action.payload },
+        chooseManCoverage: (state, action) => { state.man_coverage = action.payload },
+        chooseZoneCoverage: (state, action) => { state.zone_coverage = action.payload },
+        chooseBlocking: (state, action) => { state.blocking = action.payload },
+        chooseKickPower: (state, action) => { state.kick_power = action.payload },
+        chooseKickAcc: (state, action) => { state.kick_acc = action.payload },
+        chooseDurability: (state, action) => { state.durability = action.payload }
+    }
+})
+
+// Export Reducer
+export const reducer = rootSlice.reducer;
+export const {
+    chooseFirstName,
+    chooseLastName,
+    chooseAge,
+    chooseNumber, 
+    choosePosition,
+    chooseHeight,
+    chooseWeight, 
+    chooseAccel,
+    chooseAgility,
+    chooseSpeed,
+    chooseStrength,
+    chooseCatching,
+    chooseThrowing,
+    chooseTackling,
+    choosePassRush,
+    chooseManCoverage,
+    chooseZoneCoverage,
+    chooseBlocking,
+    chooseKickPower,
+    chooseKickAcc,
+    chooseDurability,
+} = rootSlice.actions;
