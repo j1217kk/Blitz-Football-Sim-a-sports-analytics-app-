@@ -48,16 +48,27 @@ const signinStyles = {
         display: 'block'
     },
     typographyStyle: {
-        fontFamily: 'Roboto, arial, sans-serif;',
+        fontFamily: 'Bangers;',
         textAlign: 'center',
-        fontSize: '2em'
+        fontSize: '2em',
+        paddingBottom: '3vh'
     },
     containerStyle: {
-        marginTop: '2em'
+        marginTop: '2em',
+        backgroundColor: 'rgb(0, 255, 192)',
+        borderRadius: '25px',
+        paddingTop: '50px',
+        paddingBottom: '50px',
+        paddingLeft: '60px',
+        paddingRight: '100px',
+        width: '1000px',
     },
     snackBar: {
         color: 'white',
         backgroundColor: '#4caf50'
+    },
+    labels: {
+        fontFamily: 'Bangers;'
     }
 }
 
@@ -66,6 +77,14 @@ const NavA = styled (Link) ({
     color: 'black',
     fontFamily: 'sans-serif',
     marginBottom: '20px'
+})
+
+const InputLabel = styled('div')({
+    color: 'white',
+    fontWeight: 'bolder',
+    fontFamily: 'OCR A Std, monospace',
+    fontSize: '15pt'
+
 })
 
 //Functional components to be used inside of SignIn Component
@@ -106,7 +125,7 @@ const GoogleButton = (props:ButtonProps) => {
     }
     if (localStorage.getItem('myAuth') == 'true') {
         return(
-            <Button variant="contained" color="secondary" onClick={signUsOut}>Sign Out</Button>
+            <Button variant="contained" color="error" onClick={signUsOut}>Sign Out</Button>
         )
     } else {
         return (
@@ -171,12 +190,16 @@ export const SignIn = (props:UserProps) => {
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
+                    <InputLabel>
                     <label htmlFor='email'>Email</label>
                     <Input {...register('email')} name='email' placeholder='Email here ...'/>
+                    </InputLabel>
                 </div>
                 <div>
+                    <InputLabel>
                     <label htmlFor='password'>Password</label>
                     <Input2 {...register('password')} name='password' placeholder='Password here...'/>
+                    </InputLabel>
                 </div>
                 <Button type="submit" variant="contained" color="primary">Submit</Button>
             </form>
@@ -224,16 +247,20 @@ export const SignUp = (props: UserProps) => {
     return (
         <Container maxWidth="sm" sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
-                Sign In Below
+                New Account Sign Up
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
+                    <InputLabel>
                     <label htmlFor='email'>Email</label>
                     <Input {...register('email')} name='email' placeholder='Email here ...'/>
+                    </InputLabel>
                 </div>
                 <div>
+                    <InputLabel>
                     <label htmlFor='password'>Password</label>
                     <Input2 {...register('password')} name='password' placeholder='Password here...'/>
+                    </InputLabel>
                 </div>
                 <Button type="submit" variant="contained" color="primary">Submit</Button>
             </form>

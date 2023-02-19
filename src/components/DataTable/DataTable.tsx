@@ -330,8 +330,8 @@ export const DataTable = () => {
                     onSelectionModelChange={(newSelectionModel) => { setData(newSelectionModel); }}
                     {...playerData}
                 />
-                <Button onClick={handleOpen}>Update</Button>
-                <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
+                <Button variant="contained" color="info" onClick={handleOpen}>Update</Button>
+                <Button variant="contained" color="error" onClick={deleteData}>Delete</Button>
                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Update Player</DialogTitle>
                     <DialogContent>

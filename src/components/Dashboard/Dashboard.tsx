@@ -82,10 +82,22 @@ contentShift: {
 },
 toolbar:{
     display: 'flex',
+    backgroundColor: 'rgb(60, 167, 120)'
 },
 toolbar_button: {
     marginLeft: 'auto',
-    backgroundColor: theme.palette.primary.contrastText
+    backgroundColor: 'goldenrod',
+    color: 'beige',
+    fontWeight: 'bolder',
+    '&:hover': {
+        backgroundColor: 'yellow',
+        color: 'darkblue',
+        boxShadow: 4,
+    },
+},
+popUp: {
+    width: '2000px',
+    color: 'red'
 }
 };
 
@@ -147,7 +159,7 @@ export const Dashboard = () => {
                 <DialogTitle id="form-dialog-title">Create New Player</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Add A New Player</DialogContentText>
-                    <PlayerForm />
+                    <PlayerForm/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick = {handleDialogClickClose} color="primary">Cancel</Button>

@@ -16,14 +16,13 @@ const Root = styled("div")({
 })
 const NavbarContainer = styled('div')( {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    gap: '50vh',
+    backgroundColor: 'rgb(60, 167, 120)',
 })
 const Logo = styled('h1')({
-    margin: '0 0 0 0.45em'
 })
 const LogoA = styled(Link)( {
-    color: 'rgb(28,24,22)',
+    color: 'rgb(255, 165, 0)',
     listStyle: 'none',
     textTransform: 'uppercase',
     textDecoration: 'none'
@@ -32,13 +31,16 @@ const LogoNavigation = styled('ul')( {
     listStyle: 'none',
     textTransform: 'uppercase',
     textDecoration: 'none',
-    display: 'flex'
+    fontWeight: 'bolder',
+    display: 'flex',
+    justifyContent: 'center',
 })
 
 const NavA = styled(Link)({
     display: 'block',
     padding: '1em',
-    color: 'black'
+    color: 'beige',
+    textDecoration: 'none',
 })
 const Main = styled('main')( {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${field_image});`,
@@ -63,14 +65,14 @@ export const Home = (props:Props) => {
         <Root>
             <NavbarContainer>
                 <Logo>
-                    <LogoA to="/">Blitz Football Sim</LogoA>
+                    <LogoA to="/">BLITZ FOOTBALL SIM</LogoA>
                 </Logo>
                 <LogoNavigation>
                     <li>
                         <NavA to="/">Home</NavA>
                     </li>
                     <li>
-                        <NavA to="/dashboard">Dashboard/Roster</NavA>
+                        <NavA to="/dashboard">Roster</NavA>
                     </li>
                     <li>
                         <NavA to="/signin">Sign In</NavA>
