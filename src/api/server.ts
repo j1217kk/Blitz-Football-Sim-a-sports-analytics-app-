@@ -2,7 +2,7 @@ let token = `71dce4da5928f169fb46de251b8b2fba4482ec77eaaa9f0b`
 
 export const serverCalls = {
     get: async () => {
-        const response = await fetch(`https://balsam-handy-door.glitch.me/api/players`,{
+        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me//api/players`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export const serverCalls = {
     },
 
     create: async(data: any = {}) => {
-        const response = await fetch(`https://balsam-handy-door.glitch.me/api/players`,{
+        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const serverCalls = {
         return await response.json()
     },
     update: async (id:string, data:any = {}) => {
-        const response = await fetch(`https://balsam-handy-door.glitch.me/api/players/${id}`, {
+        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export const serverCalls = {
         });
     },
     delete: async(id:string) => {
-        const response = await fetch(`https://balsam-handy-door.glitch.me/api/players/${id}`,{
+        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players/${id}`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
