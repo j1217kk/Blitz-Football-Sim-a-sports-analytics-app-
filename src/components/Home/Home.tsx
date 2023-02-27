@@ -16,7 +16,7 @@ const Root = styled("div")({
 })
 const NavbarContainer = styled('div')( {
     display: 'flex',
-    gap: '50vh',
+    gap: '45vh',
     backgroundColor: 'rgb(60, 167, 120)',
 })
 const Logo = styled('h1')({
@@ -73,6 +73,9 @@ export const Home = (props:Props) => {
                     </li>
                     <li>
                         <NavA to="/dashboard">Roster</NavA>
+                    </li>
+                    <li>
+                    <NavA to="/playerbase">Playerbase</NavA>
                     </li>
                     <li>
                         <NavA to="/signin">Sign In</NavA>

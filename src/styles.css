@@ -7,3 +7,7 @@
     box-sizing: inherit;
 }
 
+.column-headers{
+    color: black;
+    text-align: center;
+}

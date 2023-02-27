@@ -19,13 +19,11 @@ import { Drawer as MUIDrawer,
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { ChevronRight,ChevronLeft } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import { theme } from "../../Theme/theme";
-import { DataTable } from '../DataTable';
+import { DataTable, DataTable2 } from '../../components';
 import { GridOverlay } from '@mui/x-data-grid';
 import { PlayerForm } from '../PlayerForm';
-import { useNavigate } from 'react-router-dom';
-
-
 
 const drawerWidth = 240;
 
@@ -100,14 +98,11 @@ toolbar_button: {
 popUp: {
     width: '2000px',
     color: 'red'
-},
-linky: {
-    textDecoration: 'none',
 }
 };
 
 
-export const Dashboard = () => {
+export const Playerbase = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 
@@ -121,7 +116,6 @@ export const Dashboard = () => {
         setOpen(false);
     };
 
-    // Handle Dialog Open/Close
     const handleDialogClickOpen = () => {
         setDialogOpen(true);
     }
@@ -158,18 +152,8 @@ export const Dashboard = () => {
                 >
                 <MenuIcon />
                 </IconButton>
-                <Button sx={myStyles.toolbar_button}><a href="https://blitz-football-sim.web.app/playerbase">Add New Player</a></Button>
-                <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
-                {/* <DialogTitle id="form-dialog-title">Player</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>Add A New Player</DialogContentText>
-                    <PlayerForm/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick = {handleDialogClickClose} color="primary">Cancel</Button>
-                </DialogActions> */}
-
-                </Dialog>
+                <Typography variant="h6" noWrap></Typography>
+                <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Add New Player</Button>
             </Toolbar>
             </AppBar>
             <MUIDrawer
@@ -180,7 +164,7 @@ export const Dashboard = () => {
                 style={{width:drawerWidth}}
             >
             <Box sx={myStyles.drawerHeader}>
-            <Typography variant="h6" noWrap>My Fantasy Roster</Typography>
+            <Typography variant="h6" noWrap>Playerbase</Typography>
                     <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
                     </IconButton>
@@ -199,7 +183,7 @@ export const Dashboard = () => {
             </MUIDrawer>
             <Box sx={ myStyles.content } >
                 <Box sx={ myStyles.drawerHeader }/>
-                <DataTable />
+                <DataTable2/>
             </Box>
         </Box>
         )

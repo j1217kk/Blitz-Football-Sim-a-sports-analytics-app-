@@ -53,3 +53,40 @@ export const serverCalls = {
         })
     }
 }
+
+export const serverCalls2 = {
+    get: async (week:number) => {
+        const response = await fetch(`https://www.fantasyfootballdatapros.com/api/players/2019/${week}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok){
+            throw new Error('Failed to fetch data from server')
+        }
+
+        return await response.json()
+    }
+}
+
+export const serverCalls3 = {
+    get: async () => {
+        const response = await fetch(`https://www.fantasyfootballdatapros.com/api/players/2019/all`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok){
+            throw new Error('Failed to fetch data from server')
+        }
+
+        return await response.json()
+    }
+}
+

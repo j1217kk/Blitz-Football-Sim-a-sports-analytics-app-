@@ -71,8 +71,7 @@ const signinStyles = {
         fontFamily: 'Bangers;'
     }
 }
-
-const NavA = styled (Link) ({
+const NavB = styled (Link) ({
     display: 'block',
     color: 'black',
     fontFamily: 'sans-serif',
@@ -85,6 +84,39 @@ const InputLabel = styled('div')({
     fontFamily: 'OCR A Std, monospace',
     fontSize: '15pt'
 
+})
+
+const Root = styled("div")({
+    padding: 0,
+    margin: 0
+})
+const NavbarContainer = styled('div')( {
+    display: 'flex',
+    gap: '45vh',
+    backgroundColor: 'rgb(60, 167, 120)',
+})
+const Logo = styled('h1')({
+})
+const LogoA = styled(Link)( {
+    color: 'rgb(255, 165, 0)',
+    listStyle: 'none',
+    textTransform: 'uppercase',
+    textDecoration: 'none'
+})
+const LogoNavigation = styled('ul')( {
+    listStyle: 'none',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    fontWeight: 'bolder',
+    display: 'flex',
+    justifyContent: 'center',
+})
+
+const NavA = styled(Link)({
+    display: 'block',
+    padding: '1em',
+    color: 'beige',
+    textDecoration: 'none',
 })
 
 //Functional components to be used inside of SignIn Component
@@ -150,6 +182,7 @@ interface UserProps {
 }
 
 
+
 export const SignIn = (props:UserProps) => {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate();
@@ -184,6 +217,29 @@ export const SignIn = (props:UserProps) => {
 
     }
     return (
+        <Root>
+        <NavbarContainer>
+            <Logo>
+                <LogoA to="/">BLITZ FOOTBALL SIM</LogoA>
+            </Logo>
+            <LogoNavigation>
+                <li>
+                    <NavA to="/">Home</NavA>
+                </li>
+                <li>
+                    <NavA to="/dashboard">Roster</NavA>
+                </li>
+                <li>
+                    <NavA to="/playerbase">Playerbase</NavA>
+                </li>
+                <li>
+                    <NavA to="/signin">Sign In</NavA>
+                </li>
+                <li>
+                    <NavA to="/signup">Sign Up</NavA>
+                </li>
+            </LogoNavigation>
+        </NavbarContainer>
         <Container maxWidth="sm" sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
                 Sign In Below
@@ -203,7 +259,7 @@ export const SignIn = (props:UserProps) => {
                 </div>
                 <Button type="submit" variant="contained" color="primary">Submit</Button>
             </form>
-            <NavA to='/signup'>Don't have an account? Sign Up Here</NavA>
+            <NavB to='/signup'>Don't have an account? Sign Up Here</NavB>
             <GoogleButton open={open} onClick={handleSnackClose}/>
             <Snackbar message ='Success' open={open} autoHideDuration={3000}>
                 <Alert severity="success">
@@ -211,6 +267,7 @@ export const SignIn = (props:UserProps) => {
                 </Alert>
             </Snackbar>
         </Container>
+        </Root>
     )
 }
 
@@ -245,6 +302,29 @@ export const SignUp = (props: UserProps) => {
         })
     }
     return (
+        <Root>
+        <NavbarContainer>
+            <Logo>
+                <LogoA to="/">BLITZ FOOTBALL SIM</LogoA>
+            </Logo>
+            <LogoNavigation>
+                <li>
+                    <NavA to="/">Home</NavA>
+                </li>
+                <li>
+                    <NavA to="/dashboard">Roster</NavA>
+                </li>
+                <li>
+                    <NavA to="/playerbase">Playerbase</NavA>
+                </li>
+                <li>
+                    <NavA to="/signin">Sign In</NavA>
+                </li>
+                <li>
+                    <NavA to="/signup">Sign Up</NavA>
+                </li>
+            </LogoNavigation>
+        </NavbarContainer>
         <Container maxWidth="sm" sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
                 New Account Sign Up
@@ -270,5 +350,6 @@ export const SignUp = (props: UserProps) => {
                 </Alert>
             </Snackbar>
         </Container>
+        </Root>
 )
 }
