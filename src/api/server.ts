@@ -2,11 +2,10 @@ let token = `71dce4da5928f169fb46de251b8b2fba4482ec77eaaa9f0b`
 
 export const serverCalls = {
     get: async () => {
-        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me//api/players`,{
+        const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players`,{
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
             }
         });
 
@@ -21,8 +20,7 @@ export const serverCalls = {
         const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players`,{
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
@@ -37,8 +35,7 @@ export const serverCalls = {
         const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players/${id}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
@@ -47,8 +44,7 @@ export const serverCalls = {
         const response = await fetch(`https://checker-scrawny-gojirasaurus.glitch.me/api/players/${id}`,{
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
             }
         })
     }
@@ -59,8 +55,8 @@ export const serverCalls2 = {
         const response = await fetch(`https://www.fantasyfootballdatapros.com/api/players/2019/${week}`,{
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
+
             }
         });
 
@@ -77,8 +73,7 @@ export const serverCalls3 = {
         const response = await fetch(`https://www.fantasyfootballdatapros.com/api/players/2019/all`,{
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
-                'x-access-token': `Bearer ${token}`
+                'Content-Type': 'application/json'
             }
         });
 

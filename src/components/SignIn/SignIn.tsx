@@ -23,24 +23,31 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Input, Input2 } from '../sharedComponents/Input';
 import { styled } from '@mui/system';
 import { useForm } from 'react-hook-form';
+import luck from '../../assets/images/andrew-luck.jpg'
+import tunnelvision from '../../assets/images/football-tunnel.jpg'
+import google from '../../assets/images/google-logo.png'
+
+const peace = require("../../assets/video/tyreek-peace.mp4");
 
 const signinStyles = {
     googleButton:{
-        backgroundColor: 'rgb(66,133,244)',
-        margin: '2em',
+        backgroundColor: '#556d7c',
+        marginLeft: '17.2vh',
         padding: '0',
         color: 'white',
         height: '50px',
         width: '240px',
         border: 'none',
         textAlign: 'center',
-        boxShadow: 'rgb(0 0 0 / 25%) 0px 2px 4px 0px',
+        boxShadow: 'rgb(0 0 0 / 25%) 1px 2px 2px 2px',
         fontSize: '16px',
         lineHeight: '48px',
-        display: 'block',
-        borderRadius: '1px',
-        fontFamily: 'Roboto, arial, sans-serif',
-        cursor: 'pointer'
+        display: 'flex',
+        borderRadius: '25px',
+        fontFamily: 'OCR A Std, monospace',
+        cursor: 'pointer',
+        justifyContent: 'space-around',
+        alignItems: 'space-around'
     },
     googleLogo:{
         width: '48px',
@@ -51,14 +58,15 @@ const signinStyles = {
         fontFamily: 'Bangers;',
         textAlign: 'center',
         fontSize: '2em',
-        paddingBottom: '3vh'
+        paddingBottom: '3vh',
+        color: 'beige'
     },
     containerStyle: {
         marginTop: '2em',
-        backgroundColor: 'rgb(0, 255, 192)',
+        backgroundColor: '#36454f',
         borderRadius: '25px',
-        paddingTop: '50px',
-        paddingBottom: '50px',
+        paddingTop: '40px',
+        paddingBottom: '40px',
         paddingLeft: '60px',
         paddingRight: '100px',
         width: '1000px',
@@ -73,9 +81,11 @@ const signinStyles = {
 }
 const NavB = styled (Link) ({
     display: 'block',
-    color: 'black',
+    color: 'yellow',
     fontFamily: 'sans-serif',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    marginLeft: '15.5vh',
+    fontStyle: 'italic'
 })
 
 const InputLabel = styled('div')({
@@ -88,20 +98,23 @@ const InputLabel = styled('div')({
 
 const Root = styled("div")({
     padding: 0,
-    margin: 0
+    margin: 0,
+    backgroundColor: 'black'
 })
 const NavbarContainer = styled('div')( {
     display: 'flex',
-    gap: '45vh',
-    backgroundColor: 'rgb(60, 167, 120)',
+    gap: '34.5vh',
+    backgroundColor: 'rgb(36,33,36)',
 })
 const Logo = styled('h1')({
+    marginTop: '.5vh',
 })
 const LogoA = styled(Link)( {
     color: 'rgb(255, 165, 0)',
     listStyle: 'none',
     textTransform: 'uppercase',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
 })
 const LogoNavigation = styled('ul')( {
     listStyle: 'none',
@@ -118,6 +131,60 @@ const NavA = styled(Link)({
     color: 'beige',
     textDecoration: 'none',
 })
+const Main = styled('main')( {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    position: 'absolute',
+})
+const MainText = styled('div')({
+    textAlign: 'center',
+    position: 'relative',
+    top: '30%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+})
+
+const Main2 = styled('main')({
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${luck});`,
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    position: 'absolute'
+
+})
+
+const Main3 = styled('main')({
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${tunnelvision});`,
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    position: 'absolute'
+
+})
+
+const GoogleLogo = styled('img')({
+    maxWidth: '4vh',
+    maxHeight: '4vh',
+    paddingTop: '1vh',
+    position: 'relative',
+    marginBottom: '1vh',
+    paddingRight: '1vh'
+
+})
+
+const NavbarContainer2 = styled('div')( {
+    display: 'flex',
+    gap: '37.7vh',
+    backgroundColor: 'rgb(36,33,36)',
+})
+
 
 //Functional components to be used inside of SignIn Component
 const Alert = (props:AlertProps) => {
@@ -161,19 +228,9 @@ const GoogleButton = (props:ButtonProps) => {
         )
     } else {
         return (
-        <Button sx={signinStyles.googleButton} onClick={signIn}>Sign In With Google</Button>
+        <Button sx={signinStyles.googleButton} onClick={signIn}><span style={{paddingLeft: '1vh'}}> Sign In With Google</span><GoogleLogo src={google} alt="google-logo"/></Button>
         )
     }
-    // if (auth.currentUser){
-    //     return (
-    //         <Button variant='contained' color='secondary' onClick={signUsOut}>Sign Out</Button>
-    //     )
-    // } else {
-    //     return (
-    //         <Button sx={signinStyles.googleButton} onClick={signIn}>Sign In With Google</Button>
-    //     )
-    
-    // }
 }
 
 interface UserProps {
@@ -233,6 +290,9 @@ export const SignIn = (props:UserProps) => {
                     <NavA to="/playerbase">Playerbase</NavA>
                 </li>
                 <li>
+                    <NavA to="/tips">Tips</NavA>
+                </li>
+                <li>
                     <NavA to="/signin">Sign In</NavA>
                 </li>
                 <li>
@@ -240,6 +300,7 @@ export const SignIn = (props:UserProps) => {
                 </li>
             </LogoNavigation>
         </NavbarContainer>
+        <Main3>
         <Container maxWidth="sm" sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
                 Sign In Below
@@ -251,14 +312,16 @@ export const SignIn = (props:UserProps) => {
                     <Input {...register('email')} name='email' placeholder='Email here ...'/>
                     </InputLabel>
                 </div>
-                <div>
+                <div style={{marginTop: '1vh'}}>
                     <InputLabel>
                     <label htmlFor='password'>Password</label>
                     <Input2 {...register('password')} name='password' placeholder='Password here...'/>
                     </InputLabel>
                 </div>
-                <Button type="submit" variant="contained" color="primary">Submit</Button>
+                <br></br>
+                <Button sx={{marginLeft: '25.35vh', fontWeight: 'bold', fontFamily: 'OCR A Std, monospace'}} type="submit" variant="contained" color="primary">Sign In</Button>
             </form>
+                <br/>
             <NavB to='/signup'>Don't have an account? Sign Up Here</NavB>
             <GoogleButton open={open} onClick={handleSnackClose}/>
             <Snackbar message ='Success' open={open} autoHideDuration={3000}>
@@ -267,6 +330,7 @@ export const SignIn = (props:UserProps) => {
                 </Alert>
             </Snackbar>
         </Container>
+        </Main3>
         </Root>
     )
 }
@@ -318,6 +382,9 @@ export const SignUp = (props: UserProps) => {
                     <NavA to="/playerbase">Playerbase</NavA>
                 </li>
                 <li>
+                    <NavA to="/tips">Tips</NavA>
+                </li>
+                <li>
                     <NavA to="/signin">Sign In</NavA>
                 </li>
                 <li>
@@ -325,6 +392,7 @@ export const SignUp = (props: UserProps) => {
                 </li>
             </LogoNavigation>
         </NavbarContainer>
+        <Main2>
         <Container maxWidth="sm" sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
                 New Account Sign Up
@@ -342,7 +410,9 @@ export const SignUp = (props: UserProps) => {
                     <Input2 {...register('password')} name='password' placeholder='Password here...'/>
                     </InputLabel>
                 </div>
-                <Button type="submit" variant="contained" color="primary">Submit</Button>
+                <div style={{display: 'flex', justifyContent: 'center', marginTop: '2vh'}}>
+                <Button sx={{fontWeight: 'bold', fontFamily: 'OCR A Std, monospace'}}type="submit" variant="contained" color="primary">Register</Button>
+                </div>
             </form>
             <Snackbar message ='Success' open={open} onClose={handleSnackClose} autoHideDuration={3000}>
                 <Alert severity="success">
@@ -350,6 +420,71 @@ export const SignUp = (props: UserProps) => {
                 </Alert>
             </Snackbar>
         </Container>
+        </Main2>
         </Root>
 )
 }
+
+export const SignOut = () => {
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const auth = getAuth();
+    var deuces = String.fromCodePoint(9996)
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            localStorage.setItem('myAuth', 'false');
+            navigate('/signin');
+        } catch (error: any) {
+            setError(error.message);
+        }
+    };
+
+    return (
+        <Root>
+        <NavbarContainer2>
+            <Logo>
+                <LogoA to="/">BLITZ FOOTBALL SIM</LogoA>
+            </Logo>
+            <LogoNavigation>
+                <li>
+                    <NavA to="/">Home</NavA>
+                </li>
+                <li>
+                    <NavA to="/dashboard">Roster</NavA>
+                </li>
+                <li>
+                    <NavA to="/playerbase">Playerbase</NavA>
+                </li>
+                <li>
+                    <NavA to="/tips">Tips</NavA>
+                </li>
+                <li>
+                    <NavA to="/signout">Sign Out</NavA>
+                </li>
+            </LogoNavigation>
+        </NavbarContainer2>
+        <Main>
+            <video autoPlay loop muted id='video'>
+                <source src={peace} type='video/mp4'/>
+            </video>
+            <MainText>
+            <h1 style={{color: 'whitesmoke', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000', fontFamily: 'Bangers'}}>You're sure you want to sign out?</h1>
+            <button style ={{
+                fontSize: '16pt',
+                padding: '1.5vh',
+                marginTop: '2vh',
+                backgroundColor: '#ff1540',
+                borderRadius: '25px',
+                borderColor:'goldenrod',
+                fontFamily: 'Bangers',
+                textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+                color: '#ffae42'        
+                }}onClick={handleSignOut}>Sign Me Out<span style={{paddingRight:'1vh'}}></span>{deuces}</button>
+            {error && <p>{error}</p>}
+            </MainText>
+        </Main>
+        </Root>
+    )
+};

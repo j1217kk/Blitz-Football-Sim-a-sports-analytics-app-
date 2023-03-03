@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Button } from '@mui/material';
-import { chooseStarting,
+import {
     choosePlayerName,
     choosePosition,
     chooseTeam,
@@ -14,7 +14,8 @@ import { chooseStarting,
     chooseSznRcvY,
     chooseSznPassTd,
     chooseSznRushTd,
-    chooseSznRcvTd } from '../../redux/slices/rootSlice';
+    chooseSznRcvTd,
+    chooseStarting } from '../../redux/slices/rootSlice';
 import { Input } from '../sharedComponents/Input';
 import { serverCalls } from '../../api';
 import { useGetData } from '../../custom-hooks';
@@ -52,7 +53,7 @@ export const PlayerForm = (props:PlayerFormProps) => {
             <form onSubmit = {handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="starting">Is this player a STARTER in your lineup?</label>
-                    <Input {...register('starting')} name="starting" placeholder='True/False' />
+                    <Input {...register('starting')} name="starting" placeholder='Yes/No' />
                 </div>
                 <Button type='submit'>Submit</Button>
             </form>

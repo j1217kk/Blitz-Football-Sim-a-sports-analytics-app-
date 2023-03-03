@@ -53,16 +53,17 @@ drawer: {
     flexShrink: 0
 },
 drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth,   
 },
 drawerHeader: {
     display: 'flex',
+    fontFamily: 'Bangers',
     width: drawerWidth,
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
 },
 content: {
     flexGrow: 1,
@@ -82,7 +83,7 @@ contentShift: {
 },
 toolbar:{
     display: 'flex',
-    backgroundColor: 'rgb(60, 167, 120)'
+    backgroundColor: 'rgb(36,33,36)'
 },
 toolbar_button: {
     marginLeft: 'auto',
@@ -130,13 +131,102 @@ export const Playerbase = () => {
         onClick: () => navigate('/')
         },
         {
+            text: 'Depth Chart',
+            onClick: () => navigate('/dashboard')
+        },
+        {
+            text: 'Tips',
+            onClick: () => navigate('/tips')
+        },
+        {
+        text: 'Sign Out',
+        onClick: () => navigate('/signout')
+        }
+    ]
+    const itemsList2 = [
+        {
+        text: 'Home',
+        onClick: () => navigate('/')
+        },
+        {
+            text: 'Depth Chart',
+            onClick: () => navigate('/dashboard')
+        },
+        {
+            text: 'Tips',
+            onClick: () => navigate('/tips')
+        },
+        {
         text: 'Sign In',
         onClick: () => navigate('/signin')
+        },
+        {
+        text: 'Sign Up',
+        onClick: () => navigate('/signup')
         }
     ]
 
-    return (
-        <Box sx={{display:'flex'}} >
+    if (localStorage.getItem('myAuth') == 'true'){ 
+        return (
+            <Box sx={{display:'flex', backgroundColor: '#e1e8e3', minHeight: '100vh'}} >
+                <CssBaseline />
+                <AppBar
+                    sx={open ? myStyles.appBarShift : myStyles.appBar } 
+                    position="fixed"
+                >
+                <Toolbar sx={myStyles.toolbar}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        sx={ open ? myStyles.hide : myStyles.menuButton }
+                    >
+                    <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" noWrap></Typography>
+                </Toolbar>
+                </AppBar>
+                <MUIDrawer
+                    sx={open ? myStyles.drawer : myStyles.hide}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    style={{width:drawerWidth}}
+                >
+                <Box sx={myStyles.drawerHeader}>
+                <Typography sx={{fontFamily: 'Bangers', textAlign: 'center' }} variant="h6" noWrap><span style={{marginRight: '2.5vh', color: 'black'}}>Playerbase</span></Typography>
+                        <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
+                        </IconButton>
+                </Box>
+                <Divider />
+                <Box sx={{backgroundColor: '#e9f0d6', fontFamily: 'Bangers'}} >
+                <List>
+                    {itemsList.map((item, index) => {
+                    const { text, onClick } = item;
+                    return (
+                        <ListItem key={text} onClick={onClick}>
+                        <ListItemText>
+                            <Typography sx={{fontFamily: 'Bangers', textAlign:'center'}}
+                            variant="body1">
+                            {text}
+                            </Typography>
+                        </ListItemText>
+                        </ListItem>
+                    );
+                })}
+                </List>
+                </Box>
+                </MUIDrawer>
+                <Box sx={ myStyles.content } >
+                    <Box sx={ myStyles.drawerHeader }/>
+                    <DataTable2/>
+                </Box>
+            </Box>
+        )
+    } else return (
+        <Box sx={{display:'flex', backgroundColor: '#e1e8e3', minHeight: '100vh'}} >
             <CssBaseline />
             <AppBar
                 sx={open ? myStyles.appBarShift : myStyles.appBar } 
@@ -153,7 +243,6 @@ export const Playerbase = () => {
                 <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" noWrap></Typography>
-                <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Add New Player</Button>
             </Toolbar>
             </AppBar>
             <MUIDrawer
@@ -164,27 +253,34 @@ export const Playerbase = () => {
                 style={{width:drawerWidth}}
             >
             <Box sx={myStyles.drawerHeader}>
-            <Typography variant="h6" noWrap>Playerbase</Typography>
+            <Typography sx={{fontFamily: 'Bangers', textAlign: 'center' }} variant="h6" noWrap><span style={{marginRight: '2.5vh', color: 'black'}}>Playerbase</span></Typography>
                     <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
                     </IconButton>
             </Box>
             <Divider />
+            <Box sx={{backgroundColor: '#e9f0d6', fontFamily: 'Bangers'}} >
             <List>
-                {itemsList.map((item, index) => {
+                {itemsList2.map((item, index) => {
                 const { text, onClick } = item;
                 return (
                     <ListItem key={text} onClick={onClick}>
-                    <ListItemText primary={text} />
+                    <ListItemText>
+                        <Typography sx={{fontFamily: 'Bangers', textAlign:'center'}}
+                        variant="body1">
+                        {text}
+                        </Typography>
+                    </ListItemText>
                     </ListItem>
                 );
             })}
             </List>
+            </Box>
             </MUIDrawer>
             <Box sx={ myStyles.content } >
                 <Box sx={ myStyles.drawerHeader }/>
                 <DataTable2/>
             </Box>
         </Box>
-        )
-    };
+    )
+}

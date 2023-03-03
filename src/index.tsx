@@ -11,8 +11,8 @@ import 'firebase/auth';
 import { firebaseConfig } from './firebaseConfig';
 import { theme } from './Theme/theme';
 import { store } from './redux/store'
-import { Home, Dashboard, SignIn, SignUp, Playerbase } from './components';
-import './styles.css';
+import { Home, Dashboard, SignIn, SignUp, Playerbase, SignOut, Tips} from './components';
+import './styles.css'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -27,8 +27,10 @@ root.render(
           <Route path='/' element={<Home title={'Blitz Football Sim'}/>} />
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/playerbase' element={<Playerbase/>}/>
+          <Route path='/tips' element={<Tips/>}/>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/signout' element={<SignOut/>}/>
           </Routes>
       </Router>
     </ThemeProvider>

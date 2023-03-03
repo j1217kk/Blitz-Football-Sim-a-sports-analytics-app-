@@ -1,4 +1,4 @@
-import 'styled-componenets';
+import 'styled-components';
 import { Theme } from '@mui/material/styles';
 
 

@@ -9,6 +9,8 @@ interface inputType{
 export const Input = forwardRef((props:inputType, ref) => {
     return (
         <TextField
+            style={{border: '1px', borderColor: 'beige', color: 'beige'}}
+            InputProps={{style:{color:'white'}}}
             variant="outlined"
             margin="normal"
             inputRef={ref}
@@ -22,6 +24,8 @@ export const Input = forwardRef((props:inputType, ref) => {
 export const Input2 = forwardRef((props: inputType, ref) => {
     return (
         <TextField
+            style={{border: '1px', borderColor: 'beige', color: 'beige'}}
+            InputProps={{style:{color:'white'}}}
             variant="outlined"
             margin="normal"
             inputRef={ref}
@@ -31,3 +35,18 @@ export const Input2 = forwardRef((props: inputType, ref) => {
         ></TextField>
     );
 });
+
+export const Input3 = forwardRef((props:inputType, ref) => {
+    return (
+        <TextField
+            style={{border: '1px', borderColor: 'beige', color: 'beige'}}
+            InputProps={{style:{color:'white'}}}
+            variant="outlined"
+            margin="normal"
+            inputRef={ref}
+            fullWidth
+            type='text'
+            {...props}
+        ></TextField>
+    );
+    });

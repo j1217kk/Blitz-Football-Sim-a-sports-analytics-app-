@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface PlayerState {
-    starting: boolean,
     player_name: string,
     position: string,
     team: string,
@@ -13,11 +12,11 @@ export interface PlayerState {
     szn_rcv_y: number,
     szn_pass_td: number,
     szn_rush_td: number,
-    szn_rcv_td: number
+    szn_rcv_td: number,
+    starting: string,
 }
 
 const initialState: PlayerState = {
-    starting: false,
     player_name: '',
     position: '',
     team: '',
@@ -29,14 +28,14 @@ const initialState: PlayerState = {
     szn_rcv_y: 0,
     szn_pass_td: 0,
     szn_rush_td: 0,
-    szn_rcv_td: 0
+    szn_rcv_td: 0,
+    starting: 'No',
 }
 
 const rootSlice = createSlice({
     name: "root",
     initialState,
     reducers: {
-        chooseStarting: (state, action) => { state.starting = action.payload },
         choosePlayerName: (state, action) => { state.player_name = action.payload },
         choosePosition: (state, action) => { state.position = action.payload },
         chooseTeam: (state, action) => { state.team = action.payload },
@@ -48,7 +47,8 @@ const rootSlice = createSlice({
         chooseSznRcvY: (state, action) => { state.szn_rcv_y = action.payload },
         chooseSznPassTd: (state, action) => { state.szn_pass_td = action.payload },
         chooseSznRushTd: (state, action) => { state.szn_rush_td = action.payload },
-        chooseSznRcvTd: (state, action) => { state.szn_rcv_td = action.payload }
+        chooseSznRcvTd: (state, action) => { state.szn_rcv_td = action.payload },
+        chooseStarting: (state, action) => { state.starting = action.payload }
 
 
     }
@@ -57,7 +57,6 @@ const rootSlice = createSlice({
 // Export Reducer
 export const reducer = rootSlice.reducer;
 export const {
-    chooseStarting,
     choosePlayerName,
     choosePosition,
     chooseTeam,
@@ -70,4 +69,5 @@ export const {
     chooseSznPassTd,
     chooseSznRushTd,
     chooseSznRcvTd,
+    chooseStarting
 } = rootSlice.actions;

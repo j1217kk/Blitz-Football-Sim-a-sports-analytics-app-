@@ -24,6 +24,7 @@ import { DataTable } from '../DataTable';
 import { GridOverlay } from '@mui/x-data-grid';
 import { PlayerForm } from '../PlayerForm';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -52,10 +53,13 @@ hide: {
 },
 drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+
+
 },
 drawerPaper: {
     width: drawerWidth,
+
 },
 drawerHeader: {
     display: 'flex',
@@ -64,7 +68,8 @@ drawerHeader: {
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end'
+
 },
 content: {
     flexGrow: 1,
@@ -84,17 +89,21 @@ contentShift: {
 },
 toolbar:{
     display: 'flex',
-    backgroundColor: 'rgb(60, 167, 120)'
+    backgroundColor: 'rgb(36,33,36)'
 },
 toolbar_button: {
     marginLeft: 'auto',
-    backgroundColor: 'goldenrod',
-    color: 'beige',
+    backgroundColor: '#4649d2',
+    color: '#eab8a2',
     fontWeight: 'bolder',
+    fontFamily: 'Bangers',
+    fontSize: '15pt',
+    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
+    boxShadow: 1,
     '&:hover': {
-        backgroundColor: 'yellow',
-        color: 'darkblue',
-        boxShadow: 4,
+        backgroundColor: '#468fd2',
+        color: '#d2468f',
+        boxShadow: 6,
     },
 },
 popUp: {
@@ -136,13 +145,105 @@ export const Dashboard = () => {
         onClick: () => navigate('/')
         },
         {
-        text: 'Sign In',
-        onClick: () => navigate('/signin')
+            text: 'Playerbase',
+            onClick: () => navigate('/playerbase')
+        },
+        {
+            text: 'Tips',
+            onClick: () => navigate('/tips')
+        },
+        {
+        text: 'Sign Out',
+        onClick: () => navigate('/signout')
         }
     ]
 
-    return (
-        <Box sx={{display:'flex'}} >
+    const itemsList2 = [
+        {
+        text: 'Home',
+        onClick: () => navigate('/')
+        },
+        {
+            text: 'Playerbase',
+            onClick: () => navigate('/playerbase')
+        },
+        {
+            text: 'Tips',
+            onClick: () => navigate('/tips')
+        },
+        {
+        text: 'Sign In',
+        onClick: () => navigate('/signin')
+        },
+        {
+        text: 'Sign Up',
+        onClick: () => navigate('/signup')
+        }
+    ]
+
+    if (localStorage.getItem('myAuth') == 'true'){
+        return (
+            <Box sx={{display:'flex', backgroundColor: '#e1e8e3', minHeight: '100vh'}} >
+                <CssBaseline />
+                <AppBar
+                    sx={open ? myStyles.appBarShift : myStyles.appBar } 
+                    position="fixed"
+                >
+                <Toolbar sx={myStyles.toolbar}>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        sx={ open ? myStyles.hide : myStyles.menuButton }
+                    >
+                    <MenuIcon />
+                    </IconButton>
+                    <Button sx={myStyles.toolbar_button} component={Link} to='/playerbase'>Check Playerbase/Add Players</Button>
+                    <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
+                    </Dialog>
+                </Toolbar>
+                </AppBar>
+                <MUIDrawer
+                    sx={open ? myStyles.drawer : myStyles.hide}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    style={{width:drawerWidth}}
+                >
+                <Box sx={myStyles.drawerHeader}>
+                <Typography sx={{fontFamily: 'Bangers', textAlign: 'center' }} variant="h6" noWrap><span style={{marginRight: '2.5vh', color: 'black'}}>Depth Chart</span></Typography>
+                        <IconButton onClick={handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
+                        </IconButton>
+                </Box>
+                <Divider />
+                <Box sx={{backgroundColor: '#e9f0d6'}} >
+                <List>
+                    {itemsList.map((item, index) => {
+                    const { text, onClick } = item;
+                    return (
+                        <ListItem key={text} onClick={onClick}>
+                        <ListItemText>
+                            <Typography sx={{fontFamily: 'Bangers', textAlign:'center'}}
+                            variant="body1">
+                            {text}
+                            </Typography>
+                        </ListItemText>
+                        </ListItem>
+                    );
+                })}
+                </List>
+                </Box>
+                </MUIDrawer>
+                <Box sx={ myStyles.content } >
+                    <Box sx={ myStyles.drawerHeader }/>
+                    <DataTable />
+                </Box>
+            </Box>
+            )
+    } else return (
+        <Box sx={{display:'flex', backgroundColor: '#e1e8e3', minHeight: '100vh'}} >
             <CssBaseline />
             <AppBar
                 sx={open ? myStyles.appBarShift : myStyles.appBar } 
@@ -158,17 +259,8 @@ export const Dashboard = () => {
                 >
                 <MenuIcon />
                 </IconButton>
-                <Button sx={myStyles.toolbar_button}><a href="https://blitz-football-sim.web.app/playerbase">Add New Player</a></Button>
+                <Button sx={myStyles.toolbar_button} component={Link} to='/playerbase'>Check Playerbase/Add Players</Button>
                 <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
-                {/* <DialogTitle id="form-dialog-title">Player</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>Add A New Player</DialogContentText>
-                    <PlayerForm/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick = {handleDialogClickClose} color="primary">Cancel</Button>
-                </DialogActions> */}
-
                 </Dialog>
             </Toolbar>
             </AppBar>
@@ -180,22 +272,29 @@ export const Dashboard = () => {
                 style={{width:drawerWidth}}
             >
             <Box sx={myStyles.drawerHeader}>
-            <Typography variant="h6" noWrap>My Fantasy Roster</Typography>
+            <Typography sx={{fontFamily: 'Bangers', textAlign: 'center' }} variant="h6" noWrap><span style={{marginRight: '2.5vh', color: 'black'}}>Depth Chart</span></Typography>
                     <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'ltr' ? <ChevronLeft /> : <ChevronRight />}
                     </IconButton>
             </Box>
             <Divider />
+            <Box sx={{backgroundColor: '#e9f0d6'}} >
             <List>
-                {itemsList.map((item, index) => {
+                {itemsList2.map((item, index) => {
                 const { text, onClick } = item;
                 return (
                     <ListItem key={text} onClick={onClick}>
-                    <ListItemText primary={text} />
+                    <ListItemText>
+                        <Typography sx={{fontFamily: 'Bangers', textAlign:'center'}}
+                        variant="body1">
+                        {text}
+                        </Typography>
+                    </ListItemText>
                     </ListItem>
                 );
             })}
             </List>
+            </Box>
             </MUIDrawer>
             <Box sx={ myStyles.content } >
                 <Box sx={ myStyles.drawerHeader }/>
@@ -203,4 +302,4 @@ export const Dashboard = () => {
             </Box>
         </Box>
         )
-    };
+}
